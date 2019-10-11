@@ -1,3 +1,27 @@
+def is_prime(n: int) -> bool:
+    """
+    >>> is_prime(2)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(8)
+    False
+    """
+    # PUT YOUR CODE HERE
+
+    m = 0
+    boo = bool()
+    for i in range (1, (n+1)):
+        if (n % i == 0):
+            m += 1
+    if m > 2:
+        boo = False
+    elif m == 2:
+        boo = True
+    return boo
+    pass
+
+
 def generate_keypair(p: int, q: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
         raise ValueError('Both numbers must be prime.')
