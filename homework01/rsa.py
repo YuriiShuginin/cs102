@@ -43,6 +43,31 @@ def gcd(a: int, b: int) -> int:
     return g
     pass
 
+def multiplicative_inverse(e: int, phi: int) -> int:
+    """
+    >>> multiplicative_inverse(7, 40)
+    23
+    """
+    # PUT YOUR CODE HERE
+
+    b = e
+    a = phi
+    arr = []
+    x = 0
+    y = 1
+    while a % b != 0:
+        arr.append(a // b)
+        z = a
+        a = b
+        b = z % b
+    for i in range(len(arr[::-1])):
+           z = x
+           x = y
+           y = z - y * arr[i]
+    d = y % phi
+    return d
+    pass
+
 def generate_keypair(p: int, q: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
         raise ValueError('Both numbers must be prime.')
