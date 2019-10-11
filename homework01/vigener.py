@@ -37,4 +37,20 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     # PUT YOUR CODE HERE
+
+    l = "abcdefghijklmnopqrstuvwxyz" 
+    keyword = keyword.lower() 
+    b = -1 
+    plaintext = "" 
+    for i in ciphertext: 
+        a = ord(i) 
+        b += 1 
+        k = l.index(keyword[b % len(keyword)]) 
+        if (64 < a < 91) or (96 < a < 123): 
+            if ((64 < a < 91) and (a - k < 65)) or ((96 < a < 123) and (a - k < 97)): 
+                a = a + 26 
+            a = chr (a - k) 
+            plaintext += a 
+        else: plaintext += i 
+    ciphertext = ciphertext.replace(i, " ")
     return plaintext
