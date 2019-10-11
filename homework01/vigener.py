@@ -8,6 +8,22 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     # PUT YOUR CODE HERE
+
+    l = "abcdefghijklmnopqrstuvwxyz"
+    keyword = keyword.lower()
+    b = -1
+    ciphertext = ""
+    for i in plaintext:
+        a = ord(i)
+        b += 1
+        k = l.index(keyword[b % len(keyword)])
+        if (64 < a < 91) or (96 < a < 123):
+            if ((64 < a < 91) and (a + k > 90)) or ((96 < a < 123) and (a + k > 122)):
+                a = a - 26
+            a = chr (a + k)
+            ciphertext += a
+        else: ciphertext += i
+        plaintext = plaintext.replace(i, " ")
     return ciphertext
 
 
