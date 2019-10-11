@@ -36,12 +36,13 @@ def decrypt_caesar(ciphertext: str) -> str:
     """
     # PUT YOUR CODE HERE
 
+    plaintext = ""
     for i in ciphertext:
         b=ord(i)
-        if (64 < b < 123):
+        if (64 < b < 91) or (96 < b < 123):
             if (64 < b < 68) or (96 < b < 100):
                 b = b + 26
             b = chr(b - 3)
-            ciphertext = ciphertext.replace(i, b)
-    plaintext = ciphertext
+            plaintext += b
+        else: plaintext += i
     return plaintext
