@@ -52,5 +52,5 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
             a = chr (a - k) 
             plaintext += a 
         else: plaintext += i 
-    ciphertext = ciphertext.replace(i, " ")
+        ciphertext = ciphertext.replace(i, " ")
     return plaintext
