@@ -17,9 +17,9 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
         b += 1
         k = l.index(keyword[b % len(keyword)])
         if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z'):
-            if (('A' <= ch <= 'Z') and (chr (a + k) > 'Z')) or (('a' <= ch <= 'z') and (chr (a + k) > 'z')):
+            if (('A' <= ch <= 'Z') and (chr(a + k) > 'Z')) or (('a' <= ch <= 'z') and (chr(a + k) > 'z')):
                 a = a - 26
-            a = chr (a + k)
+            a = chr(a + k)
             ciphertext += a
         else: 
             ciphertext += ch
@@ -46,9 +46,9 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
         b += 1 
         k = l.index(keyword[b % len(keyword)]) 
         if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z'): 
-            if (('A' <= ch <= 'Z') and (chr (a - k) < 'A')) or (('a' <= ch <= 'z') and (chr (a - k) < 'a')): 
+            if (('A' <= ch <= 'Z') and (chr(a - k) < 'A')) or (('a' <= ch <= 'z') and (chr(a - k) < 'a')): 
                 a = a + 26 
-            a = chr (a - k) 
+            a = chr(a - k) 
             plaintext += a 
         else: 
             plaintext += ch 
