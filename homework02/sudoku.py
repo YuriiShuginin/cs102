@@ -80,14 +80,14 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
         row.extend(grid[0:3])
     elif 3 <= pos[0] <= 5:
         row.extend(grid[3:6])
-    else:
+    elif 6 <= pos[0] <= 8:
         row.extend(grid[6:9])
     for part in row:
         if 0 <= pos[1] <= 2:
             bl.extend(part[0:3])
         elif 3 <= pos[1] <= 5:
             bl.extend(part[3:6])
-        else:
+        elif 6 <= pos[1] <= 8:
             bl.extend(part[6:9])
     return(bl)
 
@@ -101,14 +101,11 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    row = -1
-    col = -1
-    for part in grid:
-        if (part.count('.') > 0 and row == -1 and col == -1):
-            row = grid.index(part)
-            col = part.index('.')
-    pos = (row, col)
-    return(pos)
+    for i in range(len(grid)):
+       for j in range(len(grid[0])):
+           if grid[i][j] == '.':
+               return i,j
+    return None
 
 
 def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:
@@ -121,14 +118,10 @@ def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str
     >>> values == {'2', '5', '9'}
     True
     """
-    pv = set()
-    row = get_row(grid, pos)
-    col = get_col(grid, pos)
-    block = get_block(grid, pos)
-    for i in range (1, 10):
-        if (row.count(str(i)) == 0) and (col.count(str(i)) == 0) and (block.count(str(i)) == 0):
-            pv.add(i)
-    return(pv)
+    return set('123456789') - \
+        set(get_row(grid, pos)) - \
+        set(get_col(grid, pos)) - \
+        set(get_block(grid, pos))
 
 
 def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
@@ -152,7 +145,7 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
         solution = solve(grid)
         if solution:
             return solution
-    grid[pos[0]][pos[1]] = "."
+    grid[pos[0]][pos[1]] = '.'
     return None
 
 
@@ -195,7 +188,7 @@ def generate_sudoku(N: int) -> List[List[str]]:
     >>> check_solution(solution)
     True
     """
-    grid = solve([["."] * 9 for i in range(9)])
+    grid = solve([['.'] * 9 for i in range(9)])
     if N > 81:
         N = 0
     else:
