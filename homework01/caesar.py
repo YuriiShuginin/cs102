@@ -9,7 +9,7 @@ def encrypt_caesar(plaintext: str) -> str:
     >>> encrypt_caesar("")
     ''
     """
-
+    
     ciphertext = ""
     for ch in plaintext:
         a = ord(ch)
