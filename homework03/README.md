@@ -1,3 +1,5 @@
+Запустить тесты можно так:
+
 python -m unittest discover
 test_can_create_a_random_grid (test_life.TestGameOfLife) ... ok
 test_can_create_an_empty_grid (test_life.TestGameOfLife) ... ok
