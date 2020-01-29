@@ -4,7 +4,7 @@ import config
 
 from telebot import apihelper
 
-apihelper.proxy = {'https': 'socks5://georgy.komarov:2naturala1613@aws.komarov.ml:7777'}
+apihelper.proxy = {'https': '{}'.format(config.proxy)}
 
 bot = telebot.TeleBot(config.access_token)
 
